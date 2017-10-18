@@ -1,0 +1,46 @@
+// Imported programs necessary for running the game
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.Scanner;
+
+
+//Program starts and rules are stated.
+public class Casino {
+	public static void main(String[] args) {
+		System.out.println("Hello, user! Welcome to Piyush's Casino!");
+		System.out.println("The rules are simple! You bid an amount and then you roll two dice!");
+		System.out.println("If the two numbers of the dice add up to at least 8, then you win!");
+		System.out.println("If you win, then you get however much you bid! If you lose, then you lose however much you bid!");
+		int x = 0;
+		int y = 0;
+		while (y == 0) {
+			while (x == 0) {
+				int coins = 100;
+				System.out.println("You have " + String.valueOf(coins) + " coins.");
+//Here it will ask for the user to input an amount
+				Scanner bid = new Scanner(System.in);
+				System.out.println("Enter the amount you wish to bid, then hit enter!");
+				String bid1 = bid.next();
+				int intBid = Integer.valueOf(bid1);
+//Now it will test to see if the user input is in the valid range of bidding
+				if (intBid > coins) {
+				System.out.println("You can't bid more than you have!");
+				}else if (intBid < 1) {
+				System.out.println("You must bid at least 1 coin! Please bid a valid number!");
+				}else if (intBid >= 1 && intBid <= coins) {
+				System.out.println("Ok, you will bid " + bid1 + " coins");
+				x = 1;
+				}
+			}
+			System.out.println("Rolling...");
+			int dice1 = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+			int dice2 = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+			int diceSum = (dice1 + dice2);
+			if (diceSum >= 8) {
+				System.out.println("K");
+			}else{
+				System.out.println("Well, looks like you lost!");
+			}
+		}
+		
+	}
+}
